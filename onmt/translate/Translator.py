@@ -338,7 +338,7 @@ class Translator(object):
             # enc_states, memory_bank = self.model.encoder(src, conversation,
             #                                             (src_lengths, conversation_lengths))
         dec_states = self.model.decoder.init_decoder_state(
-            src, memory_bank, enc_states)
+            concat, memory_bank, enc_states)
 
         if src_lengths is None:
             src_lengths = torch.Tensor(batch_size).type_as(memory_bank.data)\
