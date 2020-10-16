@@ -331,7 +331,9 @@ class Translator(object):
         if self.model.__class__.__name__ == "NMTModel":
             enc_states, memory_bank = self.model.encoder(src, src_lengths)
         else:
-            enc_states, memory_bank = self.model.encoder(src, src_lengths)
+            concat = torch.cat((src, conversation), 0)
+            concat_lengths = src_lengths + conversation_lengths
+            enc_states, memory_bank = self.model.encoder(concat, concat_lengths)
 
             # enc_states, memory_bank = self.model.encoder(src, conversation,
             #                                             (src_lengths, conversation_lengths))

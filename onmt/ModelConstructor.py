@@ -160,7 +160,7 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
     src_dict = fields["src"].vocab
     feature_dicts = onmt.io.collect_feature_vocabs(fields, 'src')
     src_embeddings = make_embeddings(model_opt, src_dict, feature_dicts, for_encoder=True)
-    encoder = make_emake_encoderncoder(model_opt, src_embeddings)
+    encoder = make_encoder(model_opt, src_embeddings)
 
     # Make decoder.
     tgt_dict = fields["tgt"].vocab

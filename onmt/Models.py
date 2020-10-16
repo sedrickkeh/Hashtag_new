@@ -797,12 +797,9 @@ class TwoEncoderModel(nn.Module):
         # print(lengths[1].shape)
         ### temporarily remove conv
         ### temporarily concatenate
-        print("FORWARD")
-        print(src.shape, conversation.shape)
         concat = torch.cat((src, conversation), 0)
-        print(concat.shape)
         concat_lengths = lengths[0] + lengths[1]
-        print(concat_lengths.shape)
+
         enc_final, memory_bank = self.encoder(concat, concat_lengths)
 
         if self.all_docs is not None:
